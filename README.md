@@ -8,28 +8,28 @@ Evaluar el comportamiento real de consumo de los clientes de **ConnectaTel** (op
 ## Datasets Utilizados
 El análisis integra tres fuentes de datos relacionales:
 
-1. **`plans.csv`** *(2 registros, 8 columnas)*: Catálogo de planes comerciales (`Basico` y `Premium`), incluyendo tarifas mensuales (`usd_monthly_pay`), beneficios incluidos (`messages_included`, `gb_per_month`, `minutes_included`) y costos por excedente.
-2. **`users_latam.csv`** *(4,000 registros, 8 columnas)*: Información demográfica y contractual de los clientes (`user_id`, `age`, `city`, `reg_date`, `plan`, `churn_date`).
-3. **`usage.csv`** *(40,000 registros, 6 columnas)*: Historial transaccional de actividad móvil (`type`: llamadas y mensajes, `date`, `duration` en minutos y `length` en caracteres).
+1. **`plans.csv`** *(2 registros, 8 columnas)*: Catálogo de planes comerciales ('Basico' y 'Premium'), incluyendo tarifas mensuales ('usd_monthly_pay'), beneficios incluidos ('messages_included', 'gb_per_month', 'minutes_included') y costos por excedente.
+2. **`users_latam.csv`** *(4,000 registros, 8 columnas)*: Información demográfica y contractual de los clientes ('user_id', 'age', 'city', 'reg_date', 'plan', 'churn_date').
+3. **`usage.csv`** *(40,000 registros, 6 columnas)*: Historial transaccional de actividad móvil ('type': llamadas y mensajes, 'date', 'duration' en minutos y `length` en caracteres).
 
 ---
 
 ## Etapas del Análisis Realizadas
 
-1. **Carga y Exploración Inicial:** Inspección de dimensiones (`.shape`), tipos de datos (`.info()`) y estructura general de las tres tablas.
+1. **Carga y Exploración Inicial:** Inspección de dimensiones ('.shape'), tipos de datos ('.info()') y estructura general de las tres tablas.
 2. **Diagnóstico de Calidad de Datos:**
-   - Identificación de valores nulos estructurales (MAR) en `duration` (55.19%) y `length` (44.74%) según el tipo de evento (`call` vs. `text`), así como en `churn_date` (88.35% de clientes activos).
-   - Detección de *sentinels* en `age` (`-999`) y `city` (`?`), además de fechas fuera de rango en `reg_date` (40 registros en 2026).
+   - Identificación de valores nulos estructurales (MAR) en 'duration' (55.19%) y 'length' (44.74%) según el tipo de evento ('call' vs. 'text'), así como en 'churn_date' (88.35% de clientes activos).
+   - Detección de *sentinels* en 'age' (-999) y 'city' ("?"), además de fechas fuera de rango en `reg_date` (40 registros en 2026).
 3. **Limpieza y Estandarización:**
-   - Imputación de `-999` en `age` utilizando la mediana (48 años).
+   - Imputación de -999 en `age` utilizando la mediana (48 años).
    - Reemplazo de `?` en `city` por valores nulos estándar (`pd.NA`) y conversión de fechas posteriores a 2024 a `pd.NaT`.
-4. **Agregación y Estadística Descriptiva:** Construcción de la tabla maestra `user_profile` consolidando por usuario el total de mensajes (`cant_mensajes`), llamadas (`cant_llamadas`) y minutos acumulados (`cant_minutos_llamada`).
+4. **Agregación y Estadística Descriptiva:** Construcción de la tabla maestra 'user_profile' consolidando por usuario el total de mensajes ('cant_mensajes'), llamadas ('cant_llamadas') y minutos acumulados ('cant_minutos_llamada').
 5. **Análisis Visual y Detección de Outliers:**
-   - Evaluación de distribuciones mediante histogramas y curvas KDE segmentadas por plan (`Basico`: 64.88% vs. `Premium`: 35.12%).
+   - Evaluación de distribuciones mediante histogramas y curvas KDE segmentadas por plan ('Basico': 64.88% vs. 'Premium': 35.12%).
    - Cálculo de límites superiores mediante el método del Rango Intercuartílico (**IQR**) y validación con *boxplots*, conservando los *outliers* superiores al representar patrones reales de consumo intensivo.
 6. **Segmentación de Clientes:**
-   - **Por nivel de uso (`grupo_uso`):** `Bajo uso`, `Uso medio` y `Alto uso`.
-   - **Por grupo etario (`grupo_edad`):** `Joven` (< 30 años), `Adulto` (30–59 años) y `Adulto Mayor` (≥ 60 años).
+   - **Por nivel de uso (grupo_uso):** 'Bajo uso', 'Uso medio' y 'Alto uso'.
+   - **Por grupo etario (grupo_edad):** 'Joven' (< 30 años), 'Adulto' (30–59 años) y 'Adulto Mayor' (≥ 60 años).
 7. **Insights Ejecutivos y Recomendaciones:** Traducción de hallazgos estadísticos en acciones comerciales de retención y migración hacia el plan Premium.
 
 ---
