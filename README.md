@@ -36,9 +36,21 @@ El análisis integra tres fuentes de datos relacionales:
 
 ## Cómo Ejecutar el Notebook
 
-Clona este repositorio en tu equipo:
+1.Clona y abre este repositorio en tu equipo:
 
 ```bash
 git clone https://github.com/nilton-edu-naranjo/telecom-analysis.git
 cd telecom-analysis
 ```
+2.Descarga los tres archivos de datos ('plans_csv', 'users_latam.csv', 'usage.csv') desde este repositorio y súbelos en el panel izquierdo de colab(ícono de carpeta -> **Subir al almacenamiento de sesión**).
+3.En la celda **1.1 carga de datos**, ajusta las rutas para que apunten al directorio raíz de colab:
+plans = pd.read_csv('/datasets/plans.csv')
+users = pd.read_csv('/datasets/users_latam.csv')
+usage = pd.read_csv('/datasets/usage.csv')
+4.Ejecuta todo el análisis haciendo clic en Entorno de ejecución > Ejecutar todas
+
+## Guía Breve de Reproducción
+
+- **Dependencias:** Requiere Python 3.8 o superior con las librerías pandas, numpy, matplotlib y seaborn (ya preinstaladas en Google Colab).
+- **Orden de ejecución:** Ejecuta las celdas secuencialmente de arriba hacia abajo sin omitir el **Paso 3 (Limpieza básica)**, ya que las métricas estadísticas, el cálculo de límites IQR y las segmentaciones dependen de la corrección previa de *sentinels* (-999, "?") y fechas fuera de rango.
+- **Archivos requeridos:** Asegúrate de contar con los tres datasets originales ('plans.csv', 'users_latam.csv' y 'usage.csv') en el mismo directorio de trabajo antes de iniciar la ejecución.
