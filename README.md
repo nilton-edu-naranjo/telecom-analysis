@@ -36,24 +36,29 @@ El análisis integra tres fuentes de datos relacionales:
 
 ## Cómo Ejecutar el Notebook
 
-1.**Clonar el repositorio y ubicar el proyecto:**
+1. **Clonar el repositorio y ubicar el proyecto:**
 
 ```bash
 git clone [https://github.com/nilton-edu-naranjo/telecom-analysis.git](https://github.com/nilton-edu-naranjo/telecom-analysis.git)
 cd telecom-analysis
 ```
-2.Abrir el notebook en Google Colab:
-Abre el archivo del notebook(por ejemplo, telecom_analysis_ipynb) en Google Colab(ya sea subiéndolo desde Archivo > Subir notebook o abriéndolo directamente desde GitHub) y sube los archivos 'plans.csv', 'users_latam.csv', 'usage.csv' desde el panel izquierdo (Archivos > Subir al almacenamiento de sesión).
-3.Cargar los Datasets en Colab:
-Al subir los archivos directamente en la sesión de Colab, quedan disponibles en el directorio de trabajo actual(/content/). Ejecuta la lectura usando sus nombres exactos
+2. Abrir el notebook en Google Colab:
+Abre el archivo del notebook (por ejemplo, telecom_analysis.ipynb) en Google Colab (ya sea subiéndolo desde Archivo > Subir notebook o abriéndolo directamente desde GitHub) y sube los archivos 'plans.csv', 'users_latam.csv', 'usage.csv' desde el panel izquierdo (Archivos > Subir al almacenamiento de sesión).
+3. Cargar los Datasets en Colab:
+Al subir los archivos directamente en la sesión de Colab, quedan disponibles en el directorio de trabajo actual (/content/). Ejecuta la lectura usando sus nombres exactos:
+
+```python
+import pandas as pd
+
 plans = pd.read_csv('plans.csv')
 users = pd.read_csv('users_latam.csv')
 usage = pd.read_csv('usage.csv')
+```
 4.Corre las celdas de arriba abajo en orden secuencial para reproducir la limpieza, el merge, el análisis de outliers, la segmentación y las visualizaciones.
 
 ## Guía Breve de Reproducción
 
-Entorno recomendado: Pkython 3.8 o superior (compatible con Google Colab o Jupyter Notebook/Lab).
+Entorno recomendado: Python 3.8 o superior (compatible con Google Colab o Jupyter Notebook/Lab).
 Librerías principales: pandas, numpy, matplotlib y seaborn.
-Archivos requeridos: 'plans.csv', 'users_latam.csv', 'usage.csv' y el notebook(.ipynb)correpondiente.
+Archivos requeridos: 'plans.csv', 'users_latam.csv', 'usage.csv' y el notebook (.ipynb) correspondiente.
 Orden de ejecución: Respeta el orden secuencial de las celdas —especialmente en el paso de limpieza y consolidación de variables— para evitar inconsistencias en las métricas finales o en la detección de outliers.
