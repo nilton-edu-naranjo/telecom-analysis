@@ -36,21 +36,24 @@ El análisis integra tres fuentes de datos relacionales:
 
 ## Cómo Ejecutar el Notebook
 
-1.Clona y abre este repositorio en tu equipo:
+1.**Clonar el repositorio y ubicar el proyecto:**
 
 ```bash
-git clone https://github.com/nilton-edu-naranjo/telecom-analysis.git
+git clone [https://github.com/nilton-edu-naranjo/telecom-analysis.git](https://github.com/nilton-edu-naranjo/telecom-analysis.git)
 cd telecom-analysis
 ```
-2.Descarga los tres archivos de datos ('plans_csv', 'users_latam.csv', 'usage.csv') desde este repositorio y súbelos en el panel izquierdo de colab(ícono de carpeta -> **Subir al almacenamiento de sesión**).
-3.En la celda **1.1 carga de datos**, ajusta las rutas para que apunten al directorio raíz de colab:
-plans = pd.read_csv('/datasets/plans.csv')
-users = pd.read_csv('/datasets/users_latam.csv')
-usage = pd.read_csv('/datasets/usage.csv')
-4.Ejecuta todo el análisis haciendo clic en Entorno de ejecución > Ejecutar todas
+2.Abrir el notebook en Google Colab:
+Abre el archivo del notebook(por ejemplo, telecom_analysis_ipynb) en Google Colab(ya sea subiéndolo desde Archivo > Subir notebook o abriéndolo directamente desde GitHub) y sube los archivos 'plans.csv', 'users_latam.csv', 'usage.csv' desde el panel izquierdo (Archivos > Subir al almacenamiento de sesión).
+3.Cargar los Datasets en Colab:
+Al subir los archivos directamente en la sesión de Colab, quedan disponibles en el directorio de trabajo actual(/content/). Ejecuta la lectura usando sus nombres exactos
+plans = pd.read_csv('plans.csv')
+users = pd.read_csv('users_latam.csv')
+usage = pd.read_csv('usage.csv')
+4.Corre las celdas de arriba abajo en orden secuencial para reproducir la limpieza, el merge, el análisis de outliers, la segmentación y las visualizaciones.
 
 ## Guía Breve de Reproducción
 
-- **Dependencias:** Requiere Python 3.8 o superior con las librerías pandas, numpy, matplotlib y seaborn (ya preinstaladas en Google Colab).
-- **Orden de ejecución:** Ejecuta las celdas secuencialmente de arriba hacia abajo sin omitir el **Paso 3 (Limpieza básica)**, ya que las métricas estadísticas, el cálculo de límites IQR y las segmentaciones dependen de la corrección previa de *sentinels* (-999, "?") y fechas fuera de rango.
-- **Archivos requeridos:** Asegúrate de contar con los tres datasets originales ('plans.csv', 'users_latam.csv' y 'usage.csv') en el mismo directorio de trabajo antes de iniciar la ejecución.
+Entorno recomendado: Pkython 3.8 o superior (compatible con Google Colab o Jupyter Notebook/Lab).
+Librerías principales: pandas, numpy, matplotlib y seaborn.
+Archivos requeridos: 'plans.csv', 'users_latam.csv', 'usage.csv' y el notebook(.ipynb)correpondiente.
+Orden de ejecución: Respeta el orden secuencial de las celdas —especialmente en el paso de limpieza y consolidación de variables— para evitar inconsistencias en las métricas finales o en la detección de outliers.
