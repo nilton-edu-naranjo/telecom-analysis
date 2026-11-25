@@ -39,7 +39,7 @@ El análisis integra tres fuentes de datos relacionales:
 1. **Clonar el repositorio y ubicar el proyecto:**
 
 ```bash
-git clone [https://github.com/nilton-edu-naranjo/telecom-analysis.git](https://github.com/nilton-edu-naranjo/telecom-analysis.git)
+git clone https://github.com/nilton-edu-naranjo/telecom-analysis.git
 cd telecom-analysis
 ```
 2. Abrir el notebook en Google Colab:
