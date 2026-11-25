@@ -49,12 +49,11 @@ Al subir los archivos directamente en la sesión de Colab, quedan disponibles en
 
 ```python
 import pandas as pd
-
 plans = pd.read_csv('plans.csv')
 users = pd.read_csv('users_latam.csv')
 usage = pd.read_csv('usage.csv')
 ```
-4.Corre las celdas de arriba abajo en orden secuencial para reproducir la limpieza, el merge, el análisis de outliers, la segmentación y las visualizaciones.
+4. Corre las celdas de arriba abajo en orden secuencial para reproducir la limpieza, el merge, el análisis de outliers, la segmentación y las visualizaciones.
 
 ## Guía Breve de Reproducción
 
